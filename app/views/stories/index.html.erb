@@ -1,1 +1,21 @@
-<h1>Hi</h1>
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-12">
+      <h1>My Stories</h1>
+      <hr>
+      <% @stories.each do |story| %>
+        <h2><%= story.title %></h2>
+        <p><%= story.content %></p>
+        <p>
+          Last edited time: <%= time_ago_in_words(story.updated_at) %>
+          <%= link_to "Edit", edit_story_path(story), class: "btn btn-sm btn-info" %>
+          <%= link_to "Delete", story_path(story), method: :delete, class: "btn btn-sm btn-danger", 
+              data: {confirm: "Are you sure?"} %>
+        
+        </p>
+        <hr>
+      <% end %>
+    </div>
+  </div>
+</div>
+

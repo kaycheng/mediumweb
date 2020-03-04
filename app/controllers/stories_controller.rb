@@ -1,6 +1,6 @@
 class StoriesController < ApplicationController
   before_action :authenticate_user!
-  before_action :find_story, only: [:edit, :show, :update]
+  before_action :find_story, only: [:edit, :show, :update, :destroy]
   
   def index
     @stories = current_user.stories.order(created_at: :desc)
@@ -27,8 +27,13 @@ class StoriesController < ApplicationController
     end
   end
 
-  private
+  def destroy
+    @story.destroy
+    redirect_to stories_path, notice: "Deleted successfully"
+  end
 
+  private
+  
   def story_params
     params.require(:story).permit(:title, :content, :status)
   end
