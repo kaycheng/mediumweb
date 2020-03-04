@@ -7,7 +7,12 @@
         <h2><%= story.title %></h2>
         <p><%= story.content %></p>
         <p>
-          Last edited time: <%= time_ago_in_words(story.updated_at) %>
+          Last edited time:
+          <% if Time.now - story.updated_at > 1.day %>
+            <%= story.updated_at.strftime('%F') %>
+          <% else %>
+            <%= time_ago_in_words(story.updated_at) %>
+          <% end %>
           <%= link_to "Edit", edit_story_path(story), class: "btn btn-sm btn-info" %>
           <%= link_to "Delete", story_path(story), method: :delete, class: "btn btn-sm btn-danger", 
               data: {confirm: "Are you sure?"} %>
