@@ -1,3 +1,9 @@
+<% if story.errors.any? %>
+  <div class="alert alert-danger" role="alert">
+    <%= story.errors.full_messages.to_sentence %>
+  </div>
+<% end %>
+
 <%= form_for story do |f| %>
   <div class="form-group">
     <h3><%= f.label :title %></h3>
@@ -11,7 +17,8 @@
   
   <div class="form-group">
     <%= f.submit :Draft, name: "save_as_draft", class: "btn btn-info" %>
-    <%= f.submit :Publish, name: "publish", class: "btn btn-success" %>
+    <%= f.submit :Publish, name: "publish", class: "btn btn-success" if story.may_publish? %>
+    <%= f.submit :Unpublish, name: "unpublish", class: "btn btn-danger" if story.may_unpublish? %>
   </div>
   
 <% end %>
