@@ -5,7 +5,7 @@
       <hr>
       <% @stories.each do |story| %>
         <h2>
-          <%= link_to story.title, edit_story_path(story), class: "text-dark" %>
+          <%= link_to story.title, edit_story_path(story), class: "text-dark text-decoration-none" %>
           <%= content_tag :span, 'Publish', class: "badge badge-secondary" if story.published? %>
         </h2>
         <p><%= story.content %></p>
