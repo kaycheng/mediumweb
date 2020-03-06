@@ -23,6 +23,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'devise', '~> 4.7', '>= 4.7.1'
 gem 'webpacker', '~> 4.2', '>= 4.2.2'
 gem 'aasm', '~> 5.0', '>= 5.0.6'
+gem 'friendly_id', '~> 5.3'
+gem 'babosa', '~> 1.0', '>= 1.0.3'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'

@@ -5,7 +5,7 @@
       <hr>
       <% @stories.each do |story| %>
         <h2>
-          <%= link_to story.title, edit_story_path(story), class: "text-secondary" %>
+          <%= link_to story.title, edit_story_path(story), class: "text-dark" %>
           <%= content_tag :span, 'Publish', class: "badge badge-secondary" if story.published? %>
         </h2>
         <p><%= story.content %></p>
@@ -16,7 +16,7 @@
           <% else %>
             <%= time_ago_in_words(story.updated_at) %>
           <% end %>
-          <%= link_to "Edit", edit_story_path(story), class: "btn btn-sm btn-info" %>
+          <%= link_to "Edit", edit_story_path(story), class: "text-secondary" %>
           <%= link_to "Delete", story_path(story), method: :delete, class: "btn btn-sm btn-danger", 
               data: {confirm: "Are you sure?"} %>
         
