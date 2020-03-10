@@ -1,1 +1,52 @@
-<h1>Hi</h1>
+<section>
+  <div class="container">
+    <!-- upper column -->
+    <div class="row">
+      <!-- upper left column -->
+      <div class="col">
+
+      </div>
+      <!-- upper middle column -->
+      <div class="col">
+
+      </div>
+      <!-- upper right column -->
+      <div class="col">
+
+      </div>
+    </div>
+    
+    <hr>
+    
+    <!-- down column -->
+    <div class="row">
+      <!-- down left column -->
+      <div class="col-8">
+        <div class="card mb-3 border-white" style="max-width: 540px;">
+          <div class="row no-gutters">
+            <% @stories.each do |story| %>
+              <div class="col-md-10">
+                <div class="card-body">
+                  <h5 class="card-title"><%= link_to story.title, story_page_path(story.user.username, story), class: "text-dark text-decoration-none" %></h5>
+                  <p class="card-text"><%= truncate(story.content, length: 150) %></p>
+                  <p class="card-text"><small class="text-muted">
+                    <%= link_to story.user.username.capitalize, user_page_path(story.user.username), class: "text-dark text-decoration-none" %> |
+                    <%= story.updated_at.strftime('%F') %>
+                  </small></p>
+                </div>
+              </div>
+              <div class="col-md-2">
+                <img src="https://fakeimg.pl/150x150/" class="card-img" alt="...">
+              </div>
+      
+            <% end %>
+          </div>
+        </div>
+      </div>
+      <!-- down right column -->
+      <div class="col">
+
+      </div>
+    </div>
+  </div>
+</section>
