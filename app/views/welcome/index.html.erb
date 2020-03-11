@@ -23,8 +23,9 @@
       <!-- down left column -->
       <div class="col-8">
         <div class="card mb-3 border-white" style="max-width: 540px;">
-          <div class="row no-gutters">
-            <% @stories.each do |story| %>
+          <% @stories.each do |story| %>  
+            <div class="row no-gutters">
+            
               <div class="col-md-10">
                 <div class="card-body">
                   <h5 class="card-title"><%= link_to story.title, story_page_path(story.user.username, story), class: "text-dark text-decoration-none" %></h5>
@@ -35,12 +36,16 @@
                   </small></p>
                 </div>
               </div>
-              <div class="col-md-2">
-                <img src="https://fakeimg.pl/150x150/" class="card-img" alt="...">
-              </div>
-      
-            <% end %>
-          </div>
+
+              <% if story.cover_image.attached? %>
+                <div class="col-md-2">
+                  <%= image_tag story.cover_image.variant(resize: '150X150') %>
+                </div>
+              <% end %>
+
+            </div>
+            <hr>
+          <% end %>
         </div>
       </div>
       <!-- down right column -->
