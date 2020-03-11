@@ -13,7 +13,7 @@ class Story < ApplicationRecord
     update(deleted_at: Time.now)
   end
 
-  aasm(column: 'status') do
+  aasm(column: 'status', no_direct_assignment: true) do
     state :draft, initial: true
     state :published
 

@@ -12,8 +12,9 @@ class StoriesController < ApplicationController
 
   def create
     @story = current_user.stories.new(story_params)
-    @story.status = 'published' if params[:publish]
-    
+    # @story.status = 'published' if params[:publish]
+    @story.publish! if params[:publish]
+
     if @story.save
       if params[:publish]
         redirect_to stories_path, notice: "Story is publish!"
