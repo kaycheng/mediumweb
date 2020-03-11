@@ -28,7 +28,7 @@
               <div class="col-md-10">
                 <div class="card-body">
                   <h5 class="card-title"><%= link_to story.title, story_page_path(story.user.username, story), class: "text-dark text-decoration-none" %></h5>
-                  <p class="card-text"><%= truncate(story.content, length: 150) %></p>
+                  <p class="card-text"><%= strip_tags(story.content).truncate(150) %></p>
                   <p class="card-text"><small class="text-muted">
                     <%= link_to story.user.username.capitalize, user_page_path(story.user.username), class: "text-dark text-decoration-none" %> |
                     <%= story.updated_at.strftime('%F') %>
