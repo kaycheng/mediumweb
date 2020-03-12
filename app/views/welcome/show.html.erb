@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="row justify-content-md-center">
+    <div class="col-8">
+      <h1 class="text-center"><%= @story.title %></h1>
+      <span class="profile">
+        <%= avatar(@story.user, size: 50) %>
+        <%= @story.user.username %>
+      </span>
+      
+      <article class="content">
+        <%= image_tag @story.cover_image.variant(resize: '1000x500'), class: 'cover-image' if @story.cover_image.attached? %>
+        <p class="text-justify"><%= simple_format(@story.content) %></p>
+      </article>
+    </div>  
+  </div>
+</div>

@@ -39,7 +39,7 @@
 
               <% if story.cover_image.attached? %>
                 <div class="col-md-2">
-                  <%= image_tag story.cover_image.variant(resize: '150X150') %>
+                  <%= image_tag story.cover_image.variant(resize: '150X150'), class: "cover-image" %>
                 </div>
               <% end %>
 

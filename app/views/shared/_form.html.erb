@@ -6,7 +6,7 @@
 
 <%= form_for story do |f| %>
   <div class="form-group">
-    <%= image_tag story.cover_image.variant(resize: '1000x800') if story.cover_image.attached? %>
+    <%= image_tag story.cover_image.variant(resize: '1000x800'), class: "cover-image" if story.cover_image.attached? %>
     <h3><%= f.label :cover_image %></h3>
     <%= f.file_field :cover_image, class: "form-control-file" %>
   </div>
