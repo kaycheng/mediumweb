@@ -1,0 +1,11 @@
+@import './bootstrap_custom.scss';
+@import 'stories.scss';
+
+.nav-link {
+  .user-avatar {
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    margin-right: 10px;   
+  }
+}
