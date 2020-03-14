@@ -1,7 +1,7 @@
-<section class="comment">
+<section class="comment-editor">
   <div class="comment-form">
     <% if user_signed_in? %>
-      <%= form_with model: comment, url: story_comments_path(story), remote: true do |form| %>
+      <%= form_with model: comment, url: story_comments_path(story), class: "comment_form", remote: true do |form| %>
         <div class="form-group">  
           <%= form.text_area :content, rows: 5, class: "form-control" %>
         </div>
@@ -12,3 +12,4 @@
     <% end %>
   </div>
 </section>
+
