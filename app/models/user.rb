@@ -6,6 +6,7 @@ class User < ApplicationRecord
   
   has_many :stories
   has_one_attached :avatar
+  has_many :comments
 
   validates :username, presence: true, uniqueness: true
 end

@@ -13,5 +13,7 @@ Rails.application.routes.draw do
 
   get 'demo', to: 'welcome#demo'
 
-  resources :stories
+  resources :stories do
+    resources :comments, only: [:create]
+  end
 end

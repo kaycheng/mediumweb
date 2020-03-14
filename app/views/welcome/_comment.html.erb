@@ -1,0 +1,10 @@
+<div class="comment-content">
+  <div class="card border-white">
+    <div class="card-body">
+      <%= image_tag comment.user.avatar.variant(resize: '50x50'), class: "user-avatar" if comment.user.avatar.attached? %>
+      <%= comment.user.username %>
+      <p><%= simple_format(comment.content) %></p>
+      <hr>
+    </div>
+  </div>
+</div>
