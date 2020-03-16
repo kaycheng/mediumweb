@@ -11,6 +11,10 @@
         <%= image_tag @story.cover_image.variant(resize: '1000x500'), class: 'cover-image' if @story.cover_image.attached? %>
         <p class="text-justify"><%= simple_format(@story.content) %></p>
       </article>
+
+      <footer>
+        <i class="far fa-thumbs-up"></i>
+      </footer>
       <hr>
     </div>  
   </div>
