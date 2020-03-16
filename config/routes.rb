@@ -14,6 +14,9 @@ Rails.application.routes.draw do
   get 'demo', to: 'welcome#demo'
 
   resources :stories do
+    member do
+      post :clap
+    end
     resources :comments, only: [:create]
   end
 end

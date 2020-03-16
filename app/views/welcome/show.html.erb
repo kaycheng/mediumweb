@@ -12,8 +12,11 @@
         <p class="text-justify"><%= simple_format(@story.content) %></p>
       </article>
 
-      <footer>
-        <i class="far fa-thumbs-up"></i>
+      <footer data-controller="story">
+        <%= link_to "#", class: "clapButton text-decoration-none", data: { action: "story#addClap", slug: @story.slug } do %>
+          <i class="far fa-thumbs-up fa-2x"></i>
+          <span data-target="story.clapCount" class="clapCount">0</span>
+        <% end %>
       </footer>
       <hr>
     </div>  

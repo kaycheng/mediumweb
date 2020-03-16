@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_03_13_054451) do
+ActiveRecord::Schema.define(version: 2020_03_16_091130) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -65,6 +65,7 @@ ActiveRecord::Schema.define(version: 2020_03_13_054451) do
     t.datetime "updated_at", precision: 6, null: false
     t.datetime "deleted_at"
     t.string "slug"
+    t.integer "clap", default: 0
     t.index ["deleted_at"], name: "index_stories_on_deleted_at"
     t.index ["slug"], name: "index_stories_on_slug", unique: true
     t.index ["user_id"], name: "index_stories_on_user_id"

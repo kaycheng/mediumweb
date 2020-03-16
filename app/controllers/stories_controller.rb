@@ -2,6 +2,7 @@ class StoriesController < ApplicationController
   before_action :authenticate_user!
   before_action :find_story, only: [:edit, :show, :update, :destroy]
   
+
   def index
     @stories = current_user.stories.order(created_at: :desc)
   end
