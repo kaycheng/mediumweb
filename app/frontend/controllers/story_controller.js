@@ -1,11 +1,28 @@
 import { Controller } from "stimulus"
+import axios from "axios"
 
 export default class extends Controller {
   static targets = ["clapCount"]
-
+  
   addClap(event) {
     event.preventDefault()
+    let slug = event.currentTarget.dataset.slug
+    let target = this.clapCountTarget
 
-    this.clapCountTarget.innerHTML = "Ky"
+    axios.post(`/stories/${slug}/clap`)
+         .then(function(response){
+           let status = response.data.status
+           switch (status) {
+             case'sign_in_first':
+               alert('Please sign in first!')
+               break;
+           
+             default:
+               target.innerHTML = status
+           }
+         })
+         .catch(function(error) {
+           console.log(error)
+         })
   }
 }

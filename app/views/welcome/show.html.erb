@@ -15,7 +15,7 @@
       <footer data-controller="story">
         <%= link_to "#", class: "clapButton text-decoration-none", data: { action: "story#addClap", slug: @story.slug } do %>
           <i class="far fa-thumbs-up fa-2x"></i>
-          <span data-target="story.clapCount" class="clapCount">0</span>
+          <span data-target="story.clapCount" class="clapCount"><%= @story.clap %></span>
         <% end %>
       </footer>
       <hr>
