@@ -2,9 +2,12 @@
   <div class="row justify-content-md-center">
     <div class="col-8">
       <h1 class="text-center"><%= @story.title %></h1>
-      <span class="profile">
+      <span class="profile" data-controller="user">
         <%= avatar(@story.user, size: 50) %>
         <%= @story.user.username %>
+        <%= link_to "Follow", "#", class: "btn btn-secondary follow-button",
+                                   data: { action: "user#follow",
+                                   user: @story.user.id, target: "user.followButton" } %>
       </span>
       
       <article class="content">

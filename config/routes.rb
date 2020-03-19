@@ -5,6 +5,12 @@ Rails.application.routes.draw do
     registrations: 'users/registrations'
   }
 
+  resources :users, only: [] do
+    member do
+      post :follow
+    end
+  end
+
   # /@emmastone/story_title
   get '@:username/:story_id', to: 'welcome#show', as: 'story_page'
   
