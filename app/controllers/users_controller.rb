@@ -6,7 +6,7 @@ class UsersController < ApplicationController
     if user_signed_in?
       render json: {status: current_user.follow!(@user)}
     else
-      render json: {status: 'Sign_in_first'}
+      render json: {status: 'sign_in_first'}
     end
   end
 

@@ -11,7 +11,6 @@ export default class extends Controller {
     
     axios.post(`/users/${user}/follow`)
          .then(function (response) {
-           console.log(response.data)
            let status = response.data.status
            switch (status) {
              case 'sign_in_first':

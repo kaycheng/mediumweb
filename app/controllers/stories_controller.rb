@@ -55,7 +55,7 @@ class StoriesController < ApplicationController
       story.increment!(:clap)
       render json: { status: story.clap}
     else
-      render json: { status: "Sign in first!!" }
+      render json: { status: "sign_in_first" }
     end
   end
 
