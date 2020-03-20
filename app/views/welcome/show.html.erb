@@ -2,6 +2,7 @@
   <div class="row justify-content-md-center">
     <div class="col-8">
       <h1 class="text-center"><%= @story.title %></h1>
+      
       <span class="profile" data-controller="user">
         <%= avatar(@story.user, size: 50) %>
         <%= @story.user.username %>
@@ -10,6 +11,12 @@
                                  user: @story.user.id, 
                                  target: "user.followButton" } do %>
           <%= (user_signed_in? && current_user.follow?(@story.user)) ? "Followed" : "Follow" %>
+        <% end %>
+
+        <%= link_to "#", class: "bookmark-button", 
+                         data: { action: "user#addBookmark", 
+                                 slug: @story.slug } do %>
+          <i class="far fa-bookmark bookmark-icon" data-target="user.bookmark"></i>
         <% end %>
       </span>
       
