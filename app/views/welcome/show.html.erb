@@ -26,7 +26,7 @@
       
       <article class="content">
         <%= image_tag @story.cover_image.variant(resize: '1000x500'), class: 'cover-image' if @story.cover_image.attached? %>
-        <p class="text-justify"><%= simple_format(@story.content) %></p>
+        <p class="text-justify"><%= @story.content.html_safe %></p>
       </article>
 
       <footer data-controller="story">
