@@ -8,7 +8,7 @@
             <img src="https://fakeimg.pl/1280x960/?text=VIP" class="card-img-top" alt="Placeholder image">
             <div class="card-body">
               <h5 class="card-title">VIP Member</h5>
-              <h6 class="text-black-50">USD 10</h6>
+              <h6 class="text-black-50">USD <%= ENV["price_vip"] %></h6>
 
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
               </p>
@@ -23,7 +23,7 @@
             <div class="card-body">
               
               <h5 class="card-title">Platinum Member</h5>
-              <h6 class="text-black-50">USD 20</h6>
+              <h6 class="text-black-50">USD <%= ENV["price_platinum"] %></h6>
 
               <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
               </p>
