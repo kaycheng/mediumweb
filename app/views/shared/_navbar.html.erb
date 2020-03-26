@@ -19,6 +19,9 @@
             
             <div class="dropdown-divider"></div>
             <%= link_to "Profile", edit_user_registration_path, class: "dropdown-item" %> 
+            <%= link_to "ProMember", pricing_users_path, class: "dropdown-item" unless current_user.paid_user? %> 
+            
+            <div class="dropdown-divider"></div>
             <%= link_to "Sign Out", destroy_user_session_path, class: "dropdown-item", 
                 method: :delete, data: {confirm: "Are you sure？"} %>
           </div>

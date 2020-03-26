@@ -1,0 +1,37 @@
+<section class="promember-page">
+  <div class="container">
+    <div class="col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1">  
+      <div class="row justify-content-center">
+        
+        <div class="col-md-6 col-sm-12">
+          <div class="card">
+            <img src="https://fakeimg.pl/1280x960/?text=VIP" class="card-img-top" alt="Placeholder image">
+            <div class="card-body">
+              <h5 class="card-title">VIP Member</h5>
+              <h6 class="text-black-50">USD 10</h6>
+
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
+              </p>
+              <%= link_to "Buy", payment_users_path(type: 'vip'), class: "btn btn-danger btn-lg btn-block" %>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6 col-sm-12">
+          <div class="card">
+            <img src="https://fakeimg.pl/1280x960/?text=Platinum" class="card-img-top" alt="Placeholder image">
+            <div class="card-body">
+              
+              <h5 class="card-title">Platinum Member</h5>
+              <h6 class="text-black-50">USD 20</h6>
+
+              <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.
+              </p>
+              <%= link_to "Buy", payment_users_path(type: 'platinum'), class: "btn btn-info btn-lg btn-block" %>
+            </div>
+          </div>
+        </div>
+      </div>  
+    </div>
+  </div>
+</section>

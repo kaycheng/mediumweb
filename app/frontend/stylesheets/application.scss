@@ -3,6 +3,14 @@
 @import 'welcome.scss';
 @import './editor.scss';
 
+nav.navbar {
+  margin-bottom: 2em;
+}
+
+.card {
+  margin: 1em 1em 2em 1em;
+}
+
 .nav-link {
   .user-avatar {
     height: 40px;

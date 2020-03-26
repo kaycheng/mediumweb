@@ -22,6 +22,13 @@ Rails.application.routes.draw do
     end
   end
 
+  resources :users, only: [] do
+    collection do
+      get :pricing # /users/pricing
+      get :payment # /users/payment
+    end
+  end
+
 
   # /@emmastone/story_title
   get '@:username/:story_id', to: 'welcome#show', as: 'story_page'
