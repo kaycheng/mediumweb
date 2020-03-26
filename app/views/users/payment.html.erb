@@ -2,7 +2,7 @@
   <div class="container">
     <div class="col-md-10 offset-md-1 col-sm-10 offset-sm-1 col-10 offset-1">
       <div class="row justify-content-center">
-        <div class="col-md-8 col-sm-12">
+        <div class="col-md-10 col-sm-12">
           <div class="card">
             <div class="card-body">
               <span><strong><%= @payment_type %></strong> (USD <%= @fee %>)</span>
@@ -10,7 +10,33 @@
             </div>
           </div>
         </div>
+
+        <div class="col-md-8 col-sm-12">
+          <div id="dropin-container"></div>
+          <button id="submit-button">Request payment method</button>
+          
+          <script src="https://js.braintreegateway.com/web/dropin/1.22.1/js/dropin.min.js"></script>
+          <script>
+            document.addEventListener('DOMContentLoaded', function (event) {
+              var button = document.querySelector('#submit-button');
+
+              braintree.dropin.create({
+                authorization: '<%= @token %>',
+                container: '#dropin-container'
+              }, function (createErr, instance) {
+                button.addEventListener('click', function () {
+                  instance.requestPaymentMethod(function (err, payload) {
+                    // Submit payload.nonce to your server
+                  });
+                });
+              });
+            })
+          </script>
+        </div>
+        
+
       </div>
     </div>
   </div>  
 </section>
+

@@ -27,6 +27,7 @@ gem 'friendly_id', '~> 5.3'
 gem 'babosa', '~> 1.0', '>= 1.0.3'
 gem 'paranoia', '~> 2.4', '>= 2.4.2'
 gem 'figaro', '~> 1.1', '>= 1.1.1'
+gem "braintree", "~> 2.101.0"
 
 # Use Active Storage variant
 gem "mini_magick"
