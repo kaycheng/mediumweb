@@ -7,36 +7,41 @@
             <div class="card-body">
               <span><strong><%= @payment_type %></strong> (USD <%= @fee %>)</span>
               <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Quidem ex fugiat ipsa, pariatur doloribus accusantium. Id reiciendis officia aperiam minima ad placeat accusantium ipsam. Officiis ea nihil ab harum quo!</p>
+              
+              <%= form_with url: pay_users_path(type: params[:type]), id: 'pay_form', method: "post", local: true do |form| %>
+                <%= form.hidden_field :payment_nonce %>
+                <div id="dropin-container"></div>
+                <%= link_to "Choose Another Option", pricing_users_path, class: "btn btn-info" %>
+                <button id="submit-button" class="btn btn-secondary">Request payment method</button>
+              <% end %>
+            
             </div>
           </div>
         </div>
-
-        <div class="col-md-8 col-sm-12">
-          <div id="dropin-container"></div>
-          <button id="submit-button">Request payment method</button>
-          
-          <script src="https://js.braintreegateway.com/web/dropin/1.22.1/js/dropin.min.js"></script>
-          <script>
-            document.addEventListener('DOMContentLoaded', function (event) {
-              var button = document.querySelector('#submit-button');
-
-              braintree.dropin.create({
-                authorization: '<%= @token %>',
-                container: '#dropin-container'
-              }, function (createErr, instance) {
-                button.addEventListener('click', function () {
-                  instance.requestPaymentMethod(function (err, payload) {
-                    // Submit payload.nonce to your server
-                  });
-                });
-              });
-            })
-          </script>
-        </div>
-        
-
       </div>
     </div>
   </div>  
 </section>
+<script src="https://js.braintreegateway.com/web/dropin/1.22.1/js/dropin.min.js"></script>
+<script>
+  document.addEventListener('turbolinks:load', function (event) {
+    var button = document.querySelector('#submit-button');
+    let nonce_field = document.querySelector('input[name="payment_nonce"]')
+    let form = document.querySelector('#pay_form')
 
+    braintree.dropin.create({
+      authorization: '<%= @token %>',
+      container: '#dropin-container'
+    }, function (createErr, instance) {
+      button.addEventListener('click', function (event) {
+        event.preventDefault()
+
+        instance.requestPaymentMethod(function (err, payload) {
+          nonce_field.value = payload.nonce
+          form.submit()
+          // Submit payload.nonce to your server
+        });
+      });
+    });
+  })
+</script>
