@@ -9,11 +9,13 @@ class User < ApplicationRecord
   has_one_attached :avatar
   has_many :comments
   has_many :follows
+  has_many :followings, through: :follows
   has_many :bookmarks
 
 
   # validations
   validates :username, presence: true, uniqueness: true
+  validates :intro, length: { maximum: 250 }
 
   enum role: {
     user: 0,

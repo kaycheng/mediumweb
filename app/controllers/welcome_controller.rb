@@ -13,6 +13,7 @@ class WelcomeController < ApplicationController
   end
   
   def user
+    @user = User.find_by(username: params[:username])
   end
   
   private

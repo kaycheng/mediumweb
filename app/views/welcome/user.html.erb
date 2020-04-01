@@ -1,0 +1,89 @@
+<section class="user-page">
+  <div class="container">
+    <!-- User Introduction -->
+    <div class="row justify-content-md-center">
+      <div class="col-lg-8 col-md-10 col-sm-12">
+        <div class="row">
+          <div class="col-lg-4 col-md-4 col-sm-12">
+            <%= image_tag @user.avatar.variant(resize: "200x200"), class: "user-page-avatar" if @user.avatar.attached? %>
+          </div>
+          <div class="col-lg-8 col-md-8 col-sm-12">
+            <span class="profile" data-controller="user">
+              <%= @user.username %>
+              <%= link_to "#", class: "btn btn-secondary follow-button",
+                                     data: { action: "user#follow",
+                                             user: @user.id, 
+                                             target: "user.followButton" } do %>
+              <%= (user_signed_in? && current_user.follow?(@user)) ? "Followed" : "Follow" %>
+              <% end %>
+            </span>
+            <p class="text-muted"><%= simple_format(@user.intro) %></p>
+            <p class="text-muted">
+              <%= @user.follows.count %> Following
+              <%= @user.followings.count %> Followers
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <hr>
+    <!-- Story Lists -->
+    <div class="row justify-content-md-center">
+      <div class="col-lg-8 col-md-10 col-sm-12">
+
+        <% @user.stories.each do |story| %>
+          <%= link_to story_page_path(story.user.username, story), class: "text-decoration-none text-dark" do %>
+            <div class="card mb-3">
+              <div class="card-body">
+                <p class="card-text">
+                  <%= avatar(story.user) %>
+                  <%= story.user.username %>
+                  <p class="card-text"><small class="text-muted"><%= story.updated_at.strftime('%F') %></small></p>
+                </p>
+                <div class="container-sm container-md container-lg">
+                  <%= image_tag story.cover_image, class: "card-img-top user-page-image" if story.cover_image.attached? %>
+                </div>
+                <h1 class="card-title"><%= story.title %></h1>
+                <p class="card-text"><%= story.content.html_safe %></p>
+              </div>
+
+              
+              <div class="container">
+                <div class="row">
+                  <!-- Clap -->
+                  <div class="col-2">
+                    <span data-controller="story">
+                      <%= link_to "#", class: "clapButton text-decoration-none text-muted", data: { action: "story#addClap", slug: story.slug } do %>
+                        <i class="far fa-thumbs-up"></i>
+                        <span data-target="story.clapCount" class="clapCount"><%= story.clap %></span>
+                      <% end %>
+                    </span>
+                  </div>
+
+                  <!-- Bookmark -->
+                  <div class="col-1 offset-1">
+                    <span class="profile" data-controller="user">
+                      <%= link_to "#", class: "bookmark-button text-decoration-none text-muted", 
+                                             data: { action: "user#addBookmark", 
+                                                     slug: story.slug } do %>
+                        <% if user_signed_in? && current_user.bookmark?(story) %>
+                          <i class="fas fa-bookmark" data-target="user.bookmark"></i>
+                        <% else %>
+                          <i class="far fa-bookmark" data-target="user.bookmark"></i>
+                        <% end %>
+                      <% end %>
+                    </span>
+                  </div>
+                </div>
+              </div>
+                
+              
+            </div>
+          <% end %>
+        <% end %>
+
+      </div>
+    </div>
+  </div>
+</section>
+
