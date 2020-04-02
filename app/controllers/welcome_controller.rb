@@ -1,5 +1,6 @@
 class WelcomeController < ApplicationController
   before_action :find_story, only: [:show]
+  
   def index
     # @stories = Story.order(created_at: :desc).includes(:user)
     # @stories = Story.where(status: 'published').order(created_at: :desc).includes(:user)
@@ -14,6 +15,7 @@ class WelcomeController < ApplicationController
   
   def user
     @user = User.find_by(username: params[:username])
+    @stories = @user.stories.published_stories
   end
   
   private

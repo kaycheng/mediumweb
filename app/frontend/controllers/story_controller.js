@@ -10,19 +10,19 @@ export default class extends Controller {
     let target = this.clapCountTarget
 
     axios.post(`/api/stories/${slug}/clap`)
-         .then(function(response){
-           let status = response.data.status
-           switch (status) {
-             case'sign_in_first':
-               alert('Please sign in first!')
-               break;
-           
-             default:
-               target.innerHTML = status
-           }
-         })
-         .catch(function(error) {
-           console.log(error)
-         })
+      .then(function (response) {
+        let status = response.data.status
+        switch (status) {
+          case 'sign_in_first':
+            alert('Please sign in first!')
+            break;
+
+          default:
+            target.innerHTML = status
+        }
+      })
+      .catch(function (error) {
+        console.log(error)
+      })
   }
 }

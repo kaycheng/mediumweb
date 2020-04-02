@@ -9,18 +9,20 @@
           </div>
           <div class="col-lg-8 col-md-8 col-sm-12">
             <span class="profile" data-controller="user">
-              <%= @user.username %>
-              <%= link_to "#", class: "btn btn-secondary follow-button",
-                                     data: { action: "user#follow",
-                                             user: @user.id, 
-                                             target: "user.followButton" } do %>
-              <%= (user_signed_in? && current_user.follow?(@user)) ? "Followed" : "Follow" %>
-              <% end %>
+              <h3>
+                <%= @user.username %>
+                <%= link_to "#", class: "btn btn-secondary follow-button",
+                                      data: { action: "user#follow",
+                                              user: @user.id, 
+                                              target: "user.followButton" } do %>
+                <%= (user_signed_in? && current_user.follow?(@user)) ? "Followed" : "Follow" %>
+                <% end %>
+              </h3>
             </span>
             <p class="text-muted"><%= simple_format(@user.intro) %></p>
             <p class="text-muted">
-              <%= @user.follows.count %> Following
-              <%= @user.followings.count %> Followers
+              <%= @user.followings.count %> Following
+              <%= @user.followers.count %> Followers
             </p>
           </div>
         </div>
@@ -31,7 +33,7 @@
     <div class="row justify-content-md-center">
       <div class="col-lg-8 col-md-10 col-sm-12">
 
-        <% @user.stories.each do |story| %>
+        <% @stories.each do |story| %>
           <%= link_to story_page_path(story.user.username, story), class: "text-decoration-none text-dark" do %>
             <div class="card mb-3">
               <div class="card-body">
@@ -48,24 +50,26 @@
               </div>
 
               
-              <div class="container">
                 <div class="row">
                   <!-- Clap -->
-                  <div class="col-2">
+                  <article class="col-9 offset-1">
                     <span data-controller="story">
-                      <%= link_to "#", class: "clapButton text-decoration-none text-muted", data: { action: "story#addClap", slug: story.slug } do %>
+                      <%= link_to "#", class: "text-decoration-none text-muted",
+                                        data: { action: "story#addClap",
+                                                  slug: story.slug } do %>
                         <i class="far fa-thumbs-up"></i>
-                        <span data-target="story.clapCount" class="clapCount"><%= story.clap %></span>
+                        <span data-target="story.clapCount"><%= story.clap %></span>
                       <% end %>
+
                     </span>
-                  </div>
+                  </article>
 
                   <!-- Bookmark -->
-                  <div class="col-1 offset-1">
+                  <article class="col-2">
                     <span class="profile" data-controller="user">
                       <%= link_to "#", class: "bookmark-button text-decoration-none text-muted", 
-                                             data: { action: "user#addBookmark", 
-                                                     slug: story.slug } do %>
+                                        data: { action: "user#addBookmark", 
+                                                  slug: story.slug } do %>
                         <% if user_signed_in? && current_user.bookmark?(story) %>
                           <i class="fas fa-bookmark" data-target="user.bookmark"></i>
                         <% else %>
@@ -73,9 +77,8 @@
                         <% end %>
                       <% end %>
                     </span>
-                  </div>
+                  </article>
                 </div>
-              </div>
                 
               
             </div>

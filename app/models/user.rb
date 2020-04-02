@@ -8,8 +8,10 @@ class User < ApplicationRecord
   has_many :stories
   has_one_attached :avatar
   has_many :comments
-  has_many :follows
+  has_many :follows, dependent: :destroy
   has_many :followings, through: :follows
+  has_many :inverse_follows, foreign_key: "following_id", class_name: "Follow"
+  has_many :followers, through: :inverse_follows, source: :user
   has_many :bookmarks
 
 
