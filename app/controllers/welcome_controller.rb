@@ -5,6 +5,7 @@ class WelcomeController < ApplicationController
     # @stories = Story.where(status: 'published').order(created_at: :desc).includes(:user)
     # @stories = Story.published_stories.order(created_at: :desc).includes(:user)
     @stories = Story.published_stories
+    @story = Story.order(clap: :desc).limit(4)
   end
   
   def show

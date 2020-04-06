@@ -21,7 +21,7 @@
     <!-- down column -->
     <div class="row">
       <!-- down left column -->
-      <div class="col-8">
+      <div class="col-lg-8 col-md-8 col-sm-12">
         <div class="card mb-3 border-white" style="max-width: 540px;">
           <% @stories.each do |story| %>  
             <div class="row no-gutters">
@@ -49,8 +49,39 @@
         </div>
       </div>
       <!-- down right column -->
-      <div class="col">
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <!-- Followers stories -->
+        <div class="col-12"></div>
 
+        <!-- Popular Top 4 -->
+        <div class="col-12">
+          <h2>Popular on WebMedium</h2>
+          <hr>
+          <% @story.each do |story| %>
+            <h2><%= link_to story.title, story_page_path(story.user, story), class: "text-decoration-none text-dark" %></h2>
+            <small><p><%= link_to story.user.username, user_page_path(story.user.username), class: "text-decoration-none text-dark" %></p>
+            <p class="text-muted"><%= story.updated_at.strftime("%F") %></p></small>
+          <% end %>
+        </div>
+
+        <!-- My Bookmark Recently -->
+        <div class="col-12">
+
+        </div>
+        <hr>
+        <!-- Footer -->
+        <div class="col-12 remove-spots">
+          <ul>
+            <li><%= link_to "Help", "#", class: "text-decoration-none text-secondary" %></li>
+            <li><%= link_to "Status", "#", class: "text-decoration-none text-secondary" %></li>
+            <li><%= link_to "Writers", "#", class: "text-decoration-none text-secondary" %></li>
+            <li><%= link_to "Blog", "#", class: "text-decoration-none text-secondary" %></li>
+            <li><%= link_to "Careers", "#", class: "text-decoration-none text-secondary" %></li>
+            <li><%= link_to "Privacy", "#", class: "text-decoration-none text-secondary" %></li>
+            <li><%= link_to "Terms", "#", class: "text-decoration-none text-secondary" %></li>
+            <li><%= link_to "About", "#", class: "text-decoration-none text-secondary" %></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
