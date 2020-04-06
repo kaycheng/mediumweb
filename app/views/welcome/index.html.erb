@@ -21,14 +21,14 @@
     <!-- down column -->
     <div class="row">
       <!-- down left column -->
-      <div class="col-8">
+      <div class="col-lg-8 col-md-8 col-sm-12">
         <div class="card mb-3 border-white" style="max-width: 540px;">
           <% @stories.each do |story| %>  
             <div class="row no-gutters">
             
               <div class="col-md-10">
                 <div class="card-body">
-                  <h5 class="card-title"><%= link_to story.title, story_page_path(story.user.username, story), class: "text-dark text-decoration-none" %></h5>
+                  <h2 class="card-title"><%= link_to story.title, story_page_path(story.user.username, story), class: "text-dark text-decoration-none" %></h2>
                   <p class="card-text"><%= strip_tags(story.content).truncate(150) %></p>
                   <p class="card-text"><small class="text-muted">
                     <%= link_to story.user.username, user_page_path(story.user.username), class: "text-dark text-decoration-none" %> |
@@ -49,8 +49,48 @@
         </div>
       </div>
       <!-- down right column -->
-      <div class="col">
+      <div class="col-lg-4 col-md-4 col-sm-12">
+        <div class="col-12">
+          <h2>New From Your Network</h2>
+          <% if user_signed_in? && current_user.followers %>
+       
+            <% current_user.followers.each do |user| %>
+              <%= user.username %>
+            <% end %>
 
+          <% elsif user_signed_in? &&  current_user.follower_count %>
+            <% @stories_five.each do |story| %>
+              <div class="row">
+                <div class="col-3">
+                  <%= avatar(story.user) %>
+                </div>
+                <div class="col-9">
+                  <h3><%= story.title %></h3>
+                  <p><%= link_to story.user.username, user_page_path(story.user), class: "text-dark text-decoration-none" %></p>
+                  <p class="text-muted"><small><%= story.updated_at.strftime("%F") %></small></p>
+                </div>
+              </div>
+              
+            <% end %>
+          <% else %>
+        
+            <% @stories_five.each do |story| %>
+              <div class="row">
+                <div class="col-3">
+                  <%= avatar(story.user) %>
+                </div>
+                <div class="col-9">
+                  <h3><%= story.title %></h3>
+                  <p><%= link_to story.user.username, user_page_path(story.user), class: "text-dark text-decoration-none" %></p>
+                  <p class="text-muted"><small><%= story.updated_at.strftime("%F") %></small></p>
+                </div>
+              </div>
+
+            <% end %>
+          <% end %>
+        </div>
+        <div class="col-12"></div>
+        <div class="col-12"></div>
       </div>
     </div>
   </div>

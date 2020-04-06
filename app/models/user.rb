@@ -59,4 +59,8 @@ class User < ApplicationRecord
       return 'Followed'
     end
   end
+
+  def follower_count
+    self.followers.count = 0
+  end
 end
