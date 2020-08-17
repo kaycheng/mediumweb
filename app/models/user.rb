@@ -24,6 +24,10 @@ class User < ApplicationRecord
     admin: 3
   }
 
+  def admin?
+    self.role == 1
+  end
+
   # instance methods
   def paid_user?
     vip_user? or platinum_user?
