@@ -50,47 +50,38 @@
       </div>
       <!-- down right column -->
       <div class="col-lg-4 col-md-4 col-sm-12">
+        <!-- Followers stories -->
+        <div class="col-12"></div>
+
+        <!-- Popular Top 4 -->
         <div class="col-12">
-          <h2>New From Your Network</h2>
-          <% if user_signed_in? && current_user.followers %>
-       
-            <% current_user.followers.each do |user| %>
-              <%= user.username %>
-            <% end %>
-
-          <% elsif user_signed_in? &&  current_user.follower_count %>
-            <% @stories_five.each do |story| %>
-              <div class="row">
-                <div class="col-3">
-                  <%= avatar(story.user) %>
-                </div>
-                <div class="col-9">
-                  <h3><%= story.title %></h3>
-                  <p><%= link_to story.user.username, user_page_path(story.user), class: "text-dark text-decoration-none" %></p>
-                  <p class="text-muted"><small><%= story.updated_at.strftime("%F") %></small></p>
-                </div>
-              </div>
-              
-            <% end %>
-          <% else %>
-        
-            <% @stories_five.each do |story| %>
-              <div class="row">
-                <div class="col-3">
-                  <%= avatar(story.user) %>
-                </div>
-                <div class="col-9">
-                  <h3><%= story.title %></h3>
-                  <p><%= link_to story.user.username, user_page_path(story.user), class: "text-dark text-decoration-none" %></p>
-                  <p class="text-muted"><small><%= story.updated_at.strftime("%F") %></small></p>
-                </div>
-              </div>
-
-            <% end %>
+          <h2>Popular on WebMedium</h2>
+          <hr>
+          <% @story.each do |story| %>
+            <h2><%= link_to story.title, story_page_path(story.user, story), class: "text-decoration-none text-dark" %></h2>
+            <small><p><%= link_to story.user.username, user_page_path(story.user.username), class: "text-decoration-none text-dark" %></p>
+            <p class="text-muted"><%= story.updated_at.strftime("%F") %></p></small>
           <% end %>
         </div>
-        <div class="col-12"></div>
-        <div class="col-12"></div>
+
+        <!-- My Bookmark Recently -->
+        <div class="col-12">
+
+        </div>
+        <hr>
+        <!-- Footer -->
+        <div class="col-12 remove-spots">
+          <ul>
+            <li><%= link_to "Help", "#", class: "text-decoration-none text-secondary" %></li>
+            <li><%= link_to "Status", "#", class: "text-decoration-none text-secondary" %></li>
+            <li><%= link_to "Writers", "#", class: "text-decoration-none text-secondary" %></li>
+            <li><%= link_to "Blog", "#", class: "text-decoration-none text-secondary" %></li>
+            <li><%= link_to "Careers", "#", class: "text-decoration-none text-secondary" %></li>
+            <li><%= link_to "Privacy", "#", class: "text-decoration-none text-secondary" %></li>
+            <li><%= link_to "Terms", "#", class: "text-decoration-none text-secondary" %></li>
+            <li><%= link_to "About", "#", class: "text-decoration-none text-secondary" %></li>
+          </ul>
+        </div>
       </div>
     </div>
   </div>
